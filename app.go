@@ -23,7 +23,7 @@ func main() {
 	r := csv.NewReader(file)
 	questionsList,err := r.ReadAll()
 
-	if err != nil {
+ 	if err != nil {
 		exit(fmt.Sprintf("Cannot parse %s \n",*questionFile))
 	}
 

@@ -1,0 +1,22 @@
+os:
+  - osx # Only use OSX if it's really needed!
+  - linux
+  - windows
+
+language: go
+
+go:
+  - tip # The latest version of Go.
+
+script:
+  - "./build.sh"
+
+deploy:
+  provider: releases
+  skip_cleanup: true # Important, otherwise the build output would be purged.
+  api_key:
+    secure: lFGBaF...SJ1lDPDICY=
+  file: bin/app
+  on:
+    repo: tfyl/go-quiz
+    tags: true # The deployment happens only if the commit has a tag.
