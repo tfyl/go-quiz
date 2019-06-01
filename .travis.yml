@@ -9,7 +9,7 @@ go:
   - tip # The latest version of Go.
 
 script:
-  - "./build.sh"
+  - "go build -o bin/app"
 
 deploy:
   provider: releases
