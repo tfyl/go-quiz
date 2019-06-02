@@ -12,6 +12,7 @@ script:
 before_deploy:
   - export RELEASE_PKG_FILE=app-${TRAVIS_OS_NAME}
   - echo "deploying $RELEASE_PKG_FILE to GitHub releases"
+  - git add .
 
 deploy:
   provider: releases
