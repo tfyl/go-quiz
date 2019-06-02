@@ -1,7 +1,7 @@
 os:
 - osx
 - linux
-- windows
+
 language: go
 go:
 - tip
@@ -23,4 +23,4 @@ deploy:
   file: "${RELEASE_PKG_FILE}"
   on:
     repo: tfyl/go-quiz
-#    tags: true # The deployment happens only if the commit has a tag.
+    tags: true # The deployment happens only if the commit has a tag.
