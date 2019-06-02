@@ -1,2 +1,2 @@
 # Go Quiz
-[![Build Status](https://cloud.drone.io/api/badges/tfyl/go-quiz/status.svg)](https://cloud.drone.io/tfyl/go-quiz)
+[![Build Status](https://travis-ci.com/tfyl/go-quiz.svg?branch=master)](https://github.com/tfyl/go-quiz)

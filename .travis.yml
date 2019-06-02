@@ -1,22 +1,25 @@
 os:
-  - osx # Only use OSX if it's really needed!
-  - linux
-  - windows
-
+- osx
+- linux
+- windows
 language: go
-
 go:
-  - tip # The latest version of Go.
-
+- tip
 script:
-  - "go build -o bin/app"
+- go build -o bin/app-${TRAVIS_OS_NAME}
+
+# remove below if doesn't work 3 lines
+before_deploy:
+  - export RELEASE_PKG_FILE=$(ls bin/)
+  - echo "deploying $RELEASE_PKG_FILE to GitHub releases"
 
 deploy:
   provider: releases
-  skip_cleanup: true # Important, otherwise the build output would be purged.
   api_key:
-    secure: lFGBaF...SJ1lDPDICY=
-  file: bin/app
+    secure: pMaAhgk7VPvHNJ8JerOOCA6j2kau6Qc7S6QHoq4287v+BeKFhiotrCLAR8SjF15n/Vy8RNlo4wq8iA24RNgFM3PrmEAtP2d/3+Aillpq57wbOAwoOYR0JcS1XyQ6b76KjfDJ+8QnJ0xUjmdPdydiHJpRIcnkADc9bSLg8I8CZWfJ1gAj1HEXnoBbzdxwEaOSoQspivs9lNBjuDDy6rtKYXnLFK9Wue9Dz7lmnFDRWsjr7gGJ2dBltON9ycdrBqP/dae7HC2pK8M/N93cyg8SYe8pJoIjTMzvexHADm0RTztD+Jb9/FO8lkGiHC6d+MNoitd7+IGgqVVbs0eu3u8QO8xzfgVRu8xAIe41m+cLud1EOmpUthk1GeBv00DjulxnilzpqS+HVN8efL+3nu5AtJQY45alHuKHLANnPFhnPkDnApj/1cdlnzvktR+HOTpzcAuWuPaf/3Zw0Ojl1IwAw+PRNBxC6ZDHb8nAy4dVxzEga5y9cnqxqPXEauPE/ahvE1xUh2ch11UD8e5t3ltVGXfClAo2QMnnMiqYeJJSwHEn3UtnpzmBB21CpLBvnM0BSKfuSBx26dzbIz6NyEXGK4ixO0Sf2ZCTvh/MmoS8IRI0Wu9k14LJnxUVJjcoyYydfb/uJwX9cWKASWaxoTKvwA40+WkliiiFzcs19JfH5vo=
+# remove below if doesn't work 1 line
+  file_glob: true
+  file: "${RELEASE_PKG_FILE}"
   on:
     repo: tfyl/go-quiz
-    tags: true # The deployment happens only if the commit has a tag.
+#    tags: true # The deployment happens only if the commit has a tag.
